@@ -14,8 +14,8 @@ services:
     restart: on-failure
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:7069/
+      # - ASPNETCORE_URLS=https://+:7069/
     ports:
-      - 7069:7069
+      - 7069:8080
     networks:
       - budgeteer-network
