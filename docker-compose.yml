@@ -1,0 +1,21 @@
+version: "3.4"
+
+networks:
+  budgeteer-network:
+    driver: bridge
+
+services:
+  budgeteer-api:
+    image: raducseitan/budgeteer-api
+    build:
+      context: ./Budgeteer.API
+      dockerfile: ./Dockerfile
+    container_name: budgeteer-api
+    restart: on-failure
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:7069/
+    ports:
+      - 7069:7069
+    networks:
+      - budgeteer-network

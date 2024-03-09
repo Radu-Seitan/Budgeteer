@@ -1,0 +1,6 @@
+@Budgeteer.Api_HostAddress = http://localhost:5030
+
+GET {{Budgeteer.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
