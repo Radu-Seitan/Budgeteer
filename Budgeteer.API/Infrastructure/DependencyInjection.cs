@@ -21,6 +21,7 @@ namespace Budgeteer.Infrastructure
             services.AddScoped<IExpenseRepository, ExpenseRepository>();
             services.AddScoped<IIncomeRepository, IncomeRepository>();
             services.AddScoped<IStoreRepository, StoreRepository>();
+            services.AddScoped<IAppImageRepository, AppImageRepository>();
 
             return services;
         }

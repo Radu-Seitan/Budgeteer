@@ -1,22 +1,24 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Budgeteer.Domain.Entities;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Budgeteer.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Budgeteer.Infrastructure.Persistence
 {
-    public class AppDbContext(DbContextOptions options) : DbContext(options)
+    public class AppDbContext : IdentityDbContext<User, Role, Guid>
     {
-        public DbSet<User> Users { get; set; }
         public DbSet<Income> Incomes { get; set; }
         public DbSet<Expense> Expenses { get; set; }
         public DbSet<Store> Stores { get; set; }
         public DbSet<AppImage> Images { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
+        public AppDbContext(DbContextOptions<AppDbContext> options) :
+            base(options) { }
 
-            modelBuilder.Entity<Store>(store =>
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<Store>(store =>
             {
                 store.Property(s => s.Name)
                     .HasMaxLength(40);
@@ -32,9 +34,9 @@ namespace Budgeteer.Infrastructure.Persistence
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
-            modelBuilder.Entity<User>(user =>
+            builder.Entity<User>(user =>
             {
-                user.Property(u => u.Username)
+                user.Property(u => u.UserName)
                     .HasMaxLength(40);
 
                 user.HasMany(u => u.Incomes)
@@ -47,7 +49,7 @@ namespace Budgeteer.Infrastructure.Persistence
             });
 
             // Following code ensures that enum properties are sent to DB in their string form
-            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            foreach (var entityType in builder.Model.GetEntityTypes())
             {
                 foreach (var property in entityType.GetProperties())
                 {

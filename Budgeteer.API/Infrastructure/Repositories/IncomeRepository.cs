@@ -20,7 +20,7 @@ namespace Budgeteer.Infrastructure.Repositories
 
             if (!string.IsNullOrEmpty(userId))
             {
-                incomes = incomes.Where(x => x.UserId == userId);
+                incomes = incomes.Where(x => x.UserId.ToString() == userId);
             }
 
             if (request.Category.HasValue)

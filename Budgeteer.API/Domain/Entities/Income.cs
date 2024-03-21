@@ -6,7 +6,7 @@ namespace Budgeteer.Domain.Entities
     {
         public double Quantity { get; set; }
         public IncomeCategory Category { get; set; }
-        public string UserId { get; set; }
+        public Guid UserId { get; set; }
         public User User { get; set; }
     }
 }

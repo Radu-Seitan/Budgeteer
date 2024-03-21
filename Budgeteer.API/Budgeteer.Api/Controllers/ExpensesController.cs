@@ -2,12 +2,14 @@
 using Budgeteer.Application.Expenses.CommandsHandlers;
 using Budgeteer.Application.Expenses.QueriesHandlers;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Budgeteer.Api.Controllers
 {
     [ApiController]
     [Route("api/expenses")]
+    [Authorize]
     public class ExpensesController(IMediator mediator) : ControllerBase
     {
         [HttpGet]

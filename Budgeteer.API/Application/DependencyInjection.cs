@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Budgeteer.Application.Common.Behaviours;
+using MediatR.Pipeline;
+using MediatR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Budgeteer.Application
@@ -13,8 +16,11 @@ namespace Budgeteer.Application
             {
                 options.RegisterServicesFromAssembly(assembly);
             });
-
             services.AddAutoMapper(assembly);
+
+            services.AddTransient(typeof(IRequestPreProcessor<>), typeof(LoggingBehaviour<>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 
             return services;
         }

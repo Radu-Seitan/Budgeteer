@@ -2,6 +2,7 @@
 using Budgeteer.Application.Stores.CommandsHandlers;
 using Budgeteer.Application.Stores.QueriesHandlers;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Budgeteer.Api.Controllers
@@ -12,6 +13,7 @@ namespace Budgeteer.Api.Controllers
     {
         [HttpGet]
         [Route("{storeId}")]
+        [Authorize]
         public async Task<StoreDto> GetStoreById(
             [FromRoute] int storeId)
         {

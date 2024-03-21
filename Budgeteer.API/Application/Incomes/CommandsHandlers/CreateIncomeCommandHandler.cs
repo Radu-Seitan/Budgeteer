@@ -3,6 +3,7 @@ using Budgeteer.Application.Common.DTOs;
 using Budgeteer.Application.Common.Interfaces;
 using Budgeteer.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 
 namespace Budgeteer.Application.Incomes.CommandsHandlers
 {
@@ -14,6 +15,7 @@ namespace Budgeteer.Application.Incomes.CommandsHandlers
     public class CreateIncomeCommandHandler(
         IIncomeRepository incomeRepository,
         ICurrentUserService currentUserService,
+        UserManager<User> userManager,
         IMapper mapper) : IRequestHandler<CreateIncomeCommand, Unit>
     {
         public async Task<Unit> Handle(CreateIncomeCommand request, CancellationToken cancellationToken)
@@ -21,10 +23,14 @@ namespace Budgeteer.Application.Incomes.CommandsHandlers
             var income = mapper.Map<Income>(request.CreateIncome);
 
             var currentUserId = currentUserService.UserId;
-            income.UserId = currentUserId;
+            income.UserId = Guid.Parse(currentUserId);
 
             await incomeRepository.Save(income);
-            //TODO increase income in user
+            
+            //increase income in user
+            var user = await userManager.FindByIdAsync(currentUserId);
+            user.Sum += request.CreateIncome.Quantity;
+            await userManager.UpdateAsync(user);
 
             return Unit.Value;
         }

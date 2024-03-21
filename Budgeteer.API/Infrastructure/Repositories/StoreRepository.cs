@@ -22,5 +22,15 @@ namespace Budgeteer.Infrastructure.Repositories
         {
             return await context.Stores.AsNoTracking().ToListAsync();
         }
+
+        public async Task UploadStoreImage(int storeId, Guid? imageId)
+        {
+            var store = await GetById(storeId);
+
+            store.ImageId = imageId;
+
+            context.Update(store);
+            await context.SaveChangesAsync();
+        }
     }
 }
