@@ -1498,3 +1498,4 @@ Budgeteer.UI/.yarn/*
 # .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/yarn
+/Budgeteer.API/.idea/.idea.Budgeteer.API/.idea

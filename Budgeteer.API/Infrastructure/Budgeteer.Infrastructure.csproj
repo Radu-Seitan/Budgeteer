@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application\Budgeteer.Application.csproj" />
     <ProjectReference Include="..\Domain\Budgeteer.Domain.csproj" />
   </ItemGroup>
 
