@@ -13,6 +13,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Budgeteer.Application", "Application\Budgeteer.Application.csproj", "{D7DD33B9-7A89-47E5-B529-F72C1E12FF39}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Budgeteer.Infrastructure", "Infrastructure\Budgeteer.Infrastructure.csproj", "{DC3755E6-F1F7-404D-BF53-18248A6C3626}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D7DD33B9-7A89-47E5-B529-F72C1E12FF39} = {D7DD33B9-7A89-47E5-B529-F72C1E12FF39}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
