@@ -20,31 +20,24 @@ namespace Budgeteer.Application.Expenses.CommandsHandlers
                 .NotNull();
             RuleFor(e => e.Category)
                 .NotNull();
-            RuleFor(e => e.UserId)
-                .NotNull();
             RuleFor(e => e.StoreId)
                 .NotNull();
         }
     }
 
-    public class CreateExpenseCommandHandler : IRequestHandler<CreateExpenseCommand, Unit>
+    public class CreateExpenseCommandHandler(
+        IExpenseRepository expenseRepository,
+        ICurrentUserService currentUserService,
+        IMapper mapper) : IRequestHandler<CreateExpenseCommand, Unit>
     {
-        private readonly IMapper _mapper;
-        private readonly IExpenseRepository _expenseRepository;
-
-        public CreateExpenseCommandHandler(
-            IMapper mapper,
-            IExpenseRepository expenseRepository)
-        {
-            _mapper = mapper;
-            _expenseRepository = expenseRepository;
-        }
-
         public async Task<Unit> Handle(CreateExpenseCommand request, CancellationToken cancellationToken)
         {
-            var expense = _mapper.Map<Expense>(request.CreateExpense);
+            var expense = mapper.Map<Expense>(request.CreateExpense);
 
-            await _expenseRepository.Save(expense);
+            var currentUserId = currentUserService.UserId;
+            expense.UserId = currentUserId;
+
+            await expenseRepository.Save(expense);
             //TODO decrease income sum for user
 
             return Unit.Value;

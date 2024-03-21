@@ -6,6 +6,6 @@ namespace Budgeteer.Application.Common.Interfaces
     public interface IExpenseRepository
     {
         Task Save(Expense expense);
-        Task<IEnumerable<Expense>> GetAll(GetExpensesDto request);
+        Task<IEnumerable<Expense>> GetAll(GetExpensesDto request, string? userId = null);
     }
 }

@@ -6,6 +6,5 @@ namespace Budgeteer.Application.Common.DTOs
     {
         public ExpenseCategory? Category { get; set; }
         public int? StoreId { get; set; }
-        public string? UserId { get; set; }
     }
 }

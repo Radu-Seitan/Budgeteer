@@ -5,29 +5,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Budgeteer.Infrastructure.Repositories
 {
-    public class StoreRepository : IStoreRepository
+    public class StoreRepository(AppDbContext context) : IStoreRepository
     {
-        private readonly AppDbContext _context;
-
-        public StoreRepository(AppDbContext context)
-        {
-            _context = context;
-        }
-
         public async Task Save(Store store)
         {
-            await _context.Stores.AddAsync(store);
-            await _context.SaveChangesAsync();
+            await context.Stores.AddAsync(store);
+            await context.SaveChangesAsync();
         }
 
         public async Task<Store?> GetById(int id)
         {
-            return await _context.Stores.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            return await context.Stores.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<IEnumerable<Store>> GetAll()
         {
-            return await _context.Stores.AsNoTracking().ToListAsync();
+            return await context.Stores.AsNoTracking().ToListAsync();
         }
     }
 }

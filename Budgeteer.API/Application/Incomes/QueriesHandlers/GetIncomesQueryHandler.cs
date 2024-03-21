@@ -10,24 +10,17 @@ namespace Budgeteer.Application.Incomes.QueriesHandlers
         public GetIncomesDto GetIncomes { get; set; }
     }
 
-    public class GetExpensesQueryHandler : IRequestHandler<GetIncomesQuery, IEnumerable<IncomeDto>>
+    public class GetExpensesQueryHandler(
+        IIncomeRepository incomeRepository,
+        ICurrentUserService currentUserService,
+        IMapper mapper) : IRequestHandler<GetIncomesQuery, IEnumerable<IncomeDto>>
     {
-        private readonly IMapper _mapper;
-        private readonly IIncomeRepository _incomeRepository;
-
-        public GetExpensesQueryHandler(
-            IMapper mapper,
-            IIncomeRepository incomeRepository)
-        {
-            _mapper = mapper;
-            _incomeRepository = incomeRepository;
-        }
-
         public async Task<IEnumerable<IncomeDto>> Handle(GetIncomesQuery request, CancellationToken cancellationToken)
         {
-            var expenses = await _incomeRepository.GetAll(request.GetIncomes);
+            var currentUserId = currentUserService.UserId;
+            var expenses = await incomeRepository.GetAll(request.GetIncomes, currentUserId);
 
-            return _mapper.Map<IEnumerable<IncomeDto>>(expenses);
+            return mapper.Map<IEnumerable<IncomeDto>>(expenses);
         }
     }
 }

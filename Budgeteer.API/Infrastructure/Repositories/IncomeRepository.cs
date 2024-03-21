@@ -6,28 +6,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Budgeteer.Infrastructure.Repositories
 {
-    public class IncomeRepository : IIncomeRepository
+    public class IncomeRepository(AppDbContext context) : IIncomeRepository
     {
-        private readonly AppDbContext _context;
-
-        public IncomeRepository(AppDbContext context)
-        {
-            _context = context;
-        }
-
         public async Task Save(Income income)
         {
-            await _context.Incomes.AddAsync(income);
-            await _context.SaveChangesAsync();
+            await context.Incomes.AddAsync(income);
+            await context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Income>> GetAll(GetIncomesDto request)
+        public async Task<IEnumerable<Income>> GetAll(GetIncomesDto request, string? userId = null)
         {
-            var incomes = _context.Incomes.AsNoTracking();
+            var incomes = context.Incomes.AsNoTracking();
 
-            if (!string.IsNullOrEmpty(request.UserId))
+            if (!string.IsNullOrEmpty(userId))
             {
-                incomes = incomes.Where(x => x.UserId == request.UserId);
+                incomes = incomes.Where(x => x.UserId == userId);
             }
 
             if (request.Category.HasValue)

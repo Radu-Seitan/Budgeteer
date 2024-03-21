@@ -10,24 +10,17 @@ namespace Budgeteer.Application.Expenses.QueriesHandlers
         public GetExpensesDto GetExpenses { get; set; }
     }
 
-    public class GetExpensesQueryHandler : IRequestHandler<GetExpensesQuery, IEnumerable<ExpenseDto>>
+    public class GetExpensesQueryHandler(
+        IExpenseRepository expenseRepository,
+        ICurrentUserService currentUserService,
+        IMapper mapper) : IRequestHandler<GetExpensesQuery, IEnumerable<ExpenseDto>>
     {
-        private readonly IMapper _mapper;
-        private readonly IExpenseRepository _expenseRepository;
-
-        public GetExpensesQueryHandler(
-            IMapper mapper,
-            IExpenseRepository expenseRepository)
-        {
-            _mapper = mapper;
-            _expenseRepository = expenseRepository;
-        }
-
         public async Task<IEnumerable<ExpenseDto>> Handle(GetExpensesQuery request, CancellationToken cancellationToken)
         {
-            var expenses = await _expenseRepository.GetAll(request.GetExpenses);
+            var currentUserId = currentUserService.UserId;
+            var expenses = await expenseRepository.GetAll(request.GetExpenses, currentUserId);
 
-            return _mapper.Map<IEnumerable<ExpenseDto>>(expenses);
+            return mapper.Map<IEnumerable<ExpenseDto>>(expenses);
         }
     }
 }
