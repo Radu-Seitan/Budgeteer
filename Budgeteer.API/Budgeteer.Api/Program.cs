@@ -13,6 +13,9 @@ builder.Services
     .AddInfrastructure(builder.Configuration)
     .AddApplication(builder.Configuration);
 
+//Identity
+builder.Services.AddIdenity();
+
 builder.Services.AddControllers()
     .AddJsonOptions(opts =>
     {
@@ -21,20 +24,20 @@ builder.Services.AddControllers()
     });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-/*builder.Services.AddSwaggerGen(options =>
+builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurity();
-});*/
+});
 
 builder.Services.AddTransient<ICurrentUserService, CurrentUserService>();
 
 builder.Services.AddHttpContextAccessor();
 
 //Jwt Auth
-//var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>();
-//builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
-//builder.Services.AddAuth(jwtSettings);
+var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>();
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
+builder.Services.AddAuth(jwtSettings);
+
 
 var app = builder.Build();
 
@@ -49,7 +52,7 @@ app.MigrateDatabase();
 
 app.UseHttpsRedirection();
 
-//app.UseAuth();
+app.UseAuth();
 
 app.MapControllers();
 

@@ -2,6 +2,7 @@
 using Budgeteer.Application.Incomes.CommandsHandlers;
 using Budgeteer.Application.Incomes.QueriesHandlers;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Budgeteer.Api.Controllers
@@ -11,6 +12,7 @@ namespace Budgeteer.Api.Controllers
     public class IncomesController(IMediator mediator) : ControllerBase
     {
         [HttpGet]
+        [Authorize]
         public async Task<IEnumerable<IncomeDto>> GetIncomes(
             [FromQuery] GetIncomesDto request)
         {
