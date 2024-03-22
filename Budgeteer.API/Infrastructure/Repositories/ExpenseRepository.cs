@@ -14,6 +14,12 @@ namespace Budgeteer.Infrastructure.Repositories
             await context.SaveChangesAsync();
         }
 
+        public async Task AddRange(IEnumerable<Expense> expenses)
+        {
+            await context.AddRangeAsync(expenses);
+            await context.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<Expense>> GetAll(GetExpensesDto request, string? userId = null)
         {
             var expenses = context.Expenses.AsNoTracking();

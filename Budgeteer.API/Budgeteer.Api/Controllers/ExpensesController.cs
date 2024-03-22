@@ -39,5 +39,20 @@ namespace Budgeteer.Api.Controllers
 
             return Ok();
         }
+
+        [HttpPost]
+        [Route("bulk")]
+        public async Task<IActionResult> CreateExpenses(
+            [FromBody] IEnumerable<CreateExpenseDto> request)
+        {
+            var command = new CreateBulkExpensesCommand
+            {
+                Expenses = request
+            };
+
+            await mediator.Send(command);
+
+            return Ok();
+        }
     }
 }

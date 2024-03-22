@@ -1,5 +1,6 @@
 ﻿using Budgeteer.Application.AppImages.CommandsHandlers;
 using Budgeteer.Application.AppImages.QueriesHandlers;
+using Budgeteer.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -52,6 +53,35 @@ namespace Budgeteer.Api.Controllers
             var image = await mediator.Send(query);
 
             return File(image.Content, $"{image.Type}");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PostExpenses(
+            IFormFile file)
+        {
+            if (file != null)
+            {
+                if (file.Length > 0)
+                {
+                    byte[] content = null;
+                    using (var fileStream = file.OpenReadStream())
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        fileStream.CopyTo(memoryStream);
+                        content = memoryStream.ToArray();
+                    }
+
+                    var command = new UploadExpenseImageCommand
+                    {
+                        Content = content,
+                        Type = file.ContentType
+                    };
+                    var imageId = await mediator.Send(command);
+                    return Ok(imageId);
+                }
+                else return BadRequest("file length");
+            }
+            else return BadRequest("file[0] is null");
         }
     }
 }
