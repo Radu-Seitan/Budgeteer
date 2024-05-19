@@ -19,6 +19,16 @@ builder.Services.AddCors(options =>
     });
 });
 
+// Configure Kestrel to use HTTP in development environment
+if (builder.Environment.IsDevelopment())
+{
+    builder.WebHost.ConfigureKestrel(serverOptions =>
+    {
+        serverOptions.ListenAnyIP(5030); // HTTP port
+    });
+}
+
+
 // Add services to the container.
 builder.Services
     .AddInfrastructure(builder.Configuration)
