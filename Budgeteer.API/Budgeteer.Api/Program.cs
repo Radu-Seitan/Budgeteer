@@ -71,7 +71,7 @@ if (app.Environment.IsDevelopment())
 
 app.MigrateDatabase();
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 app.UseAuth();
 

@@ -3,11 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import { UserData } from '../types/User';
 
 const initialState: UserData = {
-    fullName: '',
     token: '',
     isAuthenticated: false,
     loginError: false,
-    username: '',
+    email: '',
     password: '',
 };
 
@@ -26,6 +25,7 @@ const userSlice = createSlice({
                 ...userData,
                 isAuthenticated: true,
                 loginError: false,
+                token: userData.tk,
             };
         },
         setLoginError(state, action) {

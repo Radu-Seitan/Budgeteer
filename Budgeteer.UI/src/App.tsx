@@ -2,8 +2,8 @@ import { FC, useEffect } from 'react';
 import { changeLanguage } from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router-dom';
-
-import { Header } from './components/Header';
+import { AppHeader } from './components/AppHeader';
+import { ThemeProvider, createTheme } from '@mui/material';
 
 import './App.scss';
 
@@ -16,11 +16,22 @@ const App: FC = () => {
         }
     }, []);
 
+    const theme = createTheme({
+        palette: {
+            primary: {
+                main: '#d1cd00',
+            },
+            secondary: {
+                main: '#b5b45c',
+            },
+        },
+    });
+
     return (
-        <>
-            <Header />
+        <ThemeProvider theme={theme}>
+            <AppHeader />
             <Outlet />
-        </>
+        </ThemeProvider>
     );
 };
 

@@ -1,0 +1,25 @@
+.nav-menu-container {
+    flex-grow: 1;
+    gap: 0.5rem;
+
+    @media screen and (min-width: 600px) {
+        display: flex;
+        align-self: center;
+    }
+    @media screen and (max-width: 600px) {
+        display: none;
+    }
+}
+
+.operations-text {
+    font-size: 20px !important;
+}
+
+.menu-icon-container {
+    padding: 10px !important;
+    margin-left: auto !important;
+}
+
+.menu-icon {
+    color: #fff;
+}

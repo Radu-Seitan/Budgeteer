@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
-
-import { Home, Login, OrdersOverview, About } from '../components';
 import { AuthRoute } from '../auth/AuthRoute';
 import App from '../App';
+import { Login } from '../components/Login';
+import { Home } from '../components/Home';
 
 export const AppRoutes: FC = () => {
     return (
@@ -15,22 +15,6 @@ export const AppRoutes: FC = () => {
                     element={
                         <AuthRoute>
                             <Home />
-                        </AuthRoute>
-                    }
-                />
-                <Route
-                    path={'/about'}
-                    element={
-                        <AuthRoute>
-                            <About />
-                        </AuthRoute>
-                    }
-                />
-                <Route
-                    path={'/orders'}
-                    element={
-                        <AuthRoute>
-                            <OrdersOverview />
                         </AuthRoute>
                     }
                 />

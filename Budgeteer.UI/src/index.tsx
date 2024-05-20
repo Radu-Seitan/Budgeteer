@@ -2,7 +2,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { initTranslations } from './i18next';
 import { createRoot } from 'react-dom/client';
-import { AppRoutes } from './configs/appRoutes';
+import { AppRoutes } from './configs/AppRoutes';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 
@@ -21,7 +21,7 @@ if (container) {
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
                 <BrowserRouter>
-                    <AppRoutes></AppRoutes>
+                    <AppRoutes />
                 </BrowserRouter>
             </PersistGate>
         </Provider>

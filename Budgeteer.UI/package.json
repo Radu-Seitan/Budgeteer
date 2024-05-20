@@ -3,8 +3,7 @@
     "packageManager": "yarn@3.2.0",
     "scripts": {
         "start:dev": "env-cmd -f ./src/configs/.env.dev yarn run webpack-dev-server --mode=development --open --hot",
-        "start:test": "env-cmd -f ./src/configs/.env.test yarn run webpack-dev-server --mode=production --open --hot",
-        "build:test": "env-cmd -f ./src/configs/.env.test yarn run webpack --mode=production",
+        "start:prod": "env-cmd -f ./src/configs/.env.test yarn run webpack-dev-server --mode=production --open --hot",
         "build:prod": "env-cmd -f ./src/configs/.env.prod yarn run webpack --mode=production"
     },
     "dependencies": {

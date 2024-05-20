@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = function (env, argv) {
     const isEnvDevelopment = argv.mode === 'development';
@@ -47,7 +48,7 @@ module.exports = function (env, argv) {
                     type: 'asset/resource',
                 },
                 {
-                    test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+                    test: /\.(woff(2)?|eot|ttf|otf|svg|bmp|webp)$/,
                     type: 'asset/inline',
                 },
             ],
@@ -58,11 +59,15 @@ module.exports = function (env, argv) {
         plugins: [
             new HtmlWebpackPlugin({
                 template: path.resolve(__dirname, './src/index.html'),
+                favicon: './src/asset/inline/icons/favicon.ico',
             }),
             new ModuleNotFoundPlugin(path.resolve(__dirname, '.')),
             new CleanWebpackPlugin(),
             new webpack.DefinePlugin({
                 'process.env': JSON.stringify(process.env),
+            }),
+            new CopyWebpackPlugin({
+                patterns: [{ from: 'src/asset', to: 'asset' }],
             }),
         ],
         devServer: {

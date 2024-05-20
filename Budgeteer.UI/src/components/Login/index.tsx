@@ -1,7 +1,6 @@
-import React, { useEffect, useState, FC } from 'react';
+import { useEffect, useState, FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import {
@@ -12,32 +11,34 @@ import {
     Typography,
 } from '@mui/material';
 import { AccountCircle, Lock } from '@mui/icons-material';
-
-import { getUser } from '../store/user/reducer';
-import { RootStore } from '../store/types/RootStore';
+import { getUser } from '../../store/user/reducer';
+import { RootStore } from '../../store/types/RootStore';
 
 import './Login.scss';
 
+import * as images from '../shared/resources/images';
+
+const { LogoImage } = images.default;
+
 export const Login: FC = () => {
-    const { t } = useTranslation();
     const dispatch = useDispatch();
     const [showFailed, setShowFailed] = useState(false);
     let navigate = useNavigate();
 
     const formik = useFormik({
         initialValues: {
-            username: '',
+            email: '',
             password: '',
         },
         validationSchema: yup.object({
-            username: yup
+            email: yup
                 .string()
-                .min(3, t('Enter a min of 3 chars'))
-                .required(t('User required')),
+                .min(5, 'Enter a minimum of 5 characters')
+                .required('Email is required'),
             password: yup
                 .string()
-                .min(4, t('Enter a min of 4 chars'))
-                .required(t('Password required')),
+                .min(8, 'Enter a minimum of 8 characters')
+                .required('Password is required'),
         }),
         onSubmit: (values) => {
             dispatch(getUser(values));
@@ -48,45 +49,41 @@ export const Login: FC = () => {
     useEffect(() => {
         if (!user.loginError) {
             setShowFailed(false);
-            if (user.token) {
+            if (user.isAuthenticated) {
                 navigate('/');
             }
         }
 
-        if (user.username && user.password && user.loginError) {
+        if (user.email && user.loginError) {
             setShowFailed(true);
         }
     }, [user]);
 
     return (
-        <React.Fragment>
+        <>
             <Box
                 component="form"
                 className={'login-form'}
                 onSubmit={formik.handleSubmit}
             >
+                <img src={LogoImage} className={'login-logo-image'} />
                 <TextField
                     color="primary"
-                    name="username"
-                    label={t('user')}
-                    variant="outlined"
+                    name="email"
+                    label="Email"
+                    variant="filled"
                     fullWidth
                     className="field"
-                    value={formik.values.username}
+                    value={formik.values.email}
                     onChange={formik.handleChange}
-                    error={
-                        formik.touched.username &&
-                        Boolean(formik.errors.username)
-                    }
-                    helperText={
-                        formik.touched.username && formik.errors.username
-                    }
+                    error={formik.touched.email && Boolean(formik.errors.email)}
+                    helperText={formik.touched.email && formik.errors.email}
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
                                 <AccountCircle
                                     color={
-                                        Boolean(formik.errors.username)
+                                        Boolean(formik.errors.email)
                                             ? 'error'
                                             : 'action'
                                     }
@@ -96,13 +93,10 @@ export const Login: FC = () => {
                     }}
                 />
                 <TextField
-                    sx={{
-                        marginTop: '20px',
-                    }}
                     name="password"
                     type="password"
-                    label={t('password')}
-                    variant="outlined"
+                    label="Password"
+                    variant="filled"
                     fullWidth
                     className="field"
                     value={formik.values.password}
@@ -128,29 +122,23 @@ export const Login: FC = () => {
                         ),
                     }}
                 />
-                <br />
-                <br />
+
                 <Box textAlign="center">
                     <Button
-                        sx={{
-                            width: '100%',
-                            marginTop: '20px',
-                            height: '40px',
-                            backgroundColor: '#a7ce3b',
-                        }}
                         name="submit"
                         color="primary"
                         variant="contained"
                         type="submit"
+                        className={'login-button'}
                     >
-                        {t('login')}
+                        Login
                     </Button>
                 </Box>
-                <br />
+
                 <Typography hidden={!showFailed} color={'red'}>
-                    Incorrect username or password
+                    Incorrect email or password
                 </Typography>
             </Box>
-        </React.Fragment>
+        </>
     );
 };

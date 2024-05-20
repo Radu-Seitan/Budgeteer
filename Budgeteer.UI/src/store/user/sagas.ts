@@ -9,9 +9,9 @@ import { SagaIterator } from 'redux-saga';
 export function* handleGetUser(action: any): SagaIterator<void> {
     try {
         yield put(setLoginError(false));
-        const { username, password } = action.payload;
+        const { email, password } = action.payload;
         const response: ResponseGenerator = yield call(() =>
-            requestGetUser(username, password)
+            requestGetUser(email, password)
         );
         if (response) {
             yield put(setUser({ ...response }));
@@ -22,11 +22,11 @@ export function* handleGetUser(action: any): SagaIterator<void> {
     }
 }
 
-export function requestGetUser(username: string, password: string) {
+export function requestGetUser(email: string, password: string) {
     return API.post(
-        'Authenticate/login',
+        'auth/login',
         {
-            username: username,
+            email: email,
             password: password,
         },
         { redirectWhenUnauthorized: false }
