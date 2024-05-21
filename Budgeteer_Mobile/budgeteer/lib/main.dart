@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:budgeteer/screens/login/login_page.dart';
 import 'package:budgeteer/screens/register/register_page.dart';
+import 'package:budgeteer/screens/send_photo/send_photo_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => const LoginPage(),
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterPage(),
+        '/send_photo': (context) => const SendPhotoPage(),
       },
     );
   }

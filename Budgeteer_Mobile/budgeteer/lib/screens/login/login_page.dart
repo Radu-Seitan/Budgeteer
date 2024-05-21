@@ -45,6 +45,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     onPressed: () {
                       // TODO: Link to login endpoint
+                      Navigator.pushNamed(context, '/send_photo');
                     },
                   ),
                   ElevatedButton(
