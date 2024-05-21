@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:budgeteer/screens/login/login_page.dart';
+import 'package:budgeteer/screens/register/register_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +33,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const LoginPage(),
+        '/login': (context) => const LoginPage(),
+        '/register': (context) => const RegisterPage(),
+      },
     );
   }
 }
