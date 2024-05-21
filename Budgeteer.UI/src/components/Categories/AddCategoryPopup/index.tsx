@@ -9,20 +9,20 @@ import {
   DialogTitle,
   TextField,
 } from "@mui/material";
-// import { Category } from "../../shared/types/Category";
+import { Category } from "../../shared/types/Category";
 // import { CategoryModel } from "../../../api/Models/CategoryModel";
 // import { CategoriesApiClient } from "../../../api/Clients/CategoriesApiClients";
 
 interface AddCategoryPopupProps {
   open: boolean;
   onClose: () => void;
-  //onEditing: (category: Category) => void;
+  onEditing: (category: Category) => void;
 }
 
 export const AddCategoryPopup: FC<AddCategoryPopupProps> = ({
   open,
   onClose,
-  //onEditing,
+  onEditing,
 }: AddCategoryPopupProps) => {
   const [categoryName, setCategoryName] = useState("");
 
@@ -30,8 +30,8 @@ export const AddCategoryPopup: FC<AddCategoryPopupProps> = ({
     //const model: CategoryModel = { name: categoryName };
 
     try {
-      //const res = await CategoriesApiClient.createOneAsync(model);
-      //return res;
+      // const res = await CategoriesApiClient.createOneAsync(model);
+      // return res;
     } catch (error: any) {
       console.log(error);
     }
@@ -44,8 +44,8 @@ export const AddCategoryPopup: FC<AddCategoryPopupProps> = ({
 
   const handleSave = async () => {
     const categoryModel = await createCategory();
-    //const newCategory = categoryModel as Category;
-    //onEditing(newCategory);
+    // const newCategory = categoryModel as Category;
+    // onEditing(newCategory);
     handleClose();
   };
 
