@@ -22,7 +22,6 @@ const userSlice = createSlice({
 
             return {
                 ...state,
-                ...userData,
                 isAuthenticated: true,
                 loginError: false,
                 token: userData.tk,
@@ -35,10 +34,21 @@ const userSlice = createSlice({
                 loginError: action.payload,
             };
         },
+        register(state, action) {
+            const userData = action.payload;
+
+            return {
+                ...state,
+                isAuthenticated: true,
+                loginError: false,
+                token: userData.tk,
+            };
+        },
         logout: () => initialState,
     },
 });
 
-export const { getUser, setUser, setLoginError, logout } = userSlice.actions;
+export const { getUser, setUser, setLoginError, register, logout } =
+    userSlice.actions;
 
 export default userSlice.reducer;

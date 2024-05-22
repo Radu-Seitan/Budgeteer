@@ -10,8 +10,8 @@ import {
     TextField,
     Typography,
 } from '@mui/material';
-import { AccountCircle, Lock, Person } from '@mui/icons-material';
-import { setUser } from '../../store/user/reducer'; 
+import { AccountCircle, Lock } from '@mui/icons-material';
+import { getUser, register } from '../../store/user/reducer';
 import { RootStore } from '../../store/types/RootStore';
 
 import './Register.scss';
@@ -27,15 +27,10 @@ export const Register: FC = () => {
 
     const formik = useFormik({
         initialValues: {
-            name: '',
             email: '',
             password: '',
         },
         validationSchema: yup.object({
-            name: yup
-                .string()
-                .min(2, 'Enter a minimum of 2 characters')
-                .required('Name is required'),
             email: yup
                 .string()
                 .email('Enter a valid email')
@@ -44,29 +39,39 @@ export const Register: FC = () => {
             password: yup
                 .string()
                 .min(8, 'Enter a minimum of 8 characters')
-                .matches(/[a-z]/, 'Password must contain at least one lowercase letter')
-                .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
+                .matches(
+                    /[a-z]/,
+                    'Password must contain at least one lowercase letter'
+                )
+                .matches(
+                    /[A-Z]/,
+                    'Password must contain at least one uppercase letter'
+                )
                 .matches(/\d/, 'Password must contain at least one digit')
+                .matches(
+                    /[@$!%*?&]/,
+                    'Password must contain at least one special character (@, $, !, %, *, ?, &)'
+                )
                 .required('Password is required'),
         }),
         onSubmit: (values) => {
-            dispatch(setUser(values));
+            dispatch(register(values));
         },
     });
 
     const user = useSelector((state: RootStore) => state.user);
-    // useEffect(() => {
-    //     if (!user.registrationError) {
-    //         setShowFailed(false);
-    //         if (user.isAuthenticated) {
-    //             navigate('/');
-    //         }
-    //     }
+    useEffect(() => {
+        if (!user.loginError) {
+            setShowFailed(false);
+            if (user.isAuthenticated) {
+                navigate('/');
+            }
+        }
 
-    //     if (user.email && user.registrationError) {
-    //         setShowFailed(true);
-    //     }
-    // }, [user]);
+        if (user.email && user.loginError) {
+            setShowFailed(true);
+        }
+    }, [user]);
 
     return (
         <>

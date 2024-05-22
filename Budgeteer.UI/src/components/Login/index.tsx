@@ -1,6 +1,6 @@
 import { useEffect, useState, FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import {
@@ -137,6 +137,11 @@ export const Login: FC = () => {
 
                 <Typography hidden={!showFailed} color={'red'}>
                     Incorrect email or password
+                </Typography>
+
+                <Typography textAlign="center" mt={2}>
+                    Don't have an account?{' '}
+                    <Link to="/register">Register here</Link>
                 </Typography>
             </Box>
         </>

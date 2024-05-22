@@ -1,10 +1,12 @@
-import axios from "axios";
+import axios from 'axios';
+
+const { API_URL } = process.env;
 
 const defaultHeaders = {
-  "Content-Type": "application/json",
+    'Content-Type': 'application/json',
 };
 
-export const SpendWiseClient = axios.create({
-  baseURL: "https://localhost:7270/api/", //http://localhost:8181/
-  headers: defaultHeaders,
+export const BaseApiClient = axios.create({
+    baseURL: API_URL,
+    headers: defaultHeaders,
 });
