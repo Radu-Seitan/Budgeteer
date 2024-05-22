@@ -67,6 +67,22 @@ namespace Budgeteer.Application.Services
             return categorizedProductsDto;
         }
 
+        public async Task<Cart> ScanAndSaveReceipt(List<Category> categories, IFormFile image)
+        {
+            var categorizedProducts = await ScanReceipt(categories, image);
+
+            var cartDto = new CartCreateDto
+            {
+                Date = DateTime.Now,
+                CategoryProducts = categorizedProducts
+            };
+
+            var cart = await SaveCart(cartDto);
+
+            return cart;
+
+        }
+
         public async Task<Cart> SaveCart(CartCreateDto cartDto)
         {
             var repoProducts = await _productRepository.GetAllAsync();
@@ -96,7 +112,7 @@ namespace Budgeteer.Application.Services
 
             //create an expense when saving cart
 
-            var totalSum = cartProducts.Sum(p => p.Price);
+            var totalSum = cartProducts.Sum(p => p.Price * p.Quantity);
             var expense = new Expense
             {
                 Quantity = totalSum,
@@ -222,7 +238,6 @@ namespace Budgeteer.Application.Services
 
             return cartProducts;
         }
-
         #endregion
     }
 }

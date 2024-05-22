@@ -36,8 +36,23 @@ namespace Budgeteer.Api.Controllers
             return Ok(JsonConvert.SerializeObject(categorizedProductsDto));
         }
 
+        [HttpPost("scan-and-save")]
+        public async Task<ActionResult<string>> ScanReceiptAndSave([FromForm] string categories, [FromForm] IFormFile image)
+        {
+            List<Category> categoriesList = JsonConvert.DeserializeObject<List<Category>>(categories) ?? new List<Category>();
+
+            if (categoriesList.IsNullOrEmpty() || image.Length <= 0)
+            {
+                return BadRequest();
+            }
+
+            var cart = await _receiptsService.ScanAndSaveReceipt(categoriesList, image);
+
+            return Ok(cart);
+        }
+
         [HttpPost("cart")]
-        public async Task<ActionResult> SaveCart([FromBody] CartCreateDto cart)
+        public async Task<ActionResult<Cart>> SaveCart([FromBody] CartCreateDto cart)
         {
             try
             {
@@ -48,7 +63,7 @@ namespace Budgeteer.Api.Controllers
 
                 var createdCart = await _receiptsService.SaveCart(cart);
 
-                return Ok();
+                return Ok(cart);
             }
             catch (NotFoundException e)
             {

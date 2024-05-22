@@ -7,6 +7,9 @@ namespace Budgeteer.Application.Common.Interfaces
     public interface IReceiptService
     {
         public Task<List<CategorizedProductsDto>> ScanReceipt(List<Category> categories, IFormFile image);
+
+        public Task<Cart> ScanAndSaveReceipt(List<Category> categories, IFormFile image);
+
         public Task<Cart> SaveCart(CartCreateDto cartDto);
     }
 }
