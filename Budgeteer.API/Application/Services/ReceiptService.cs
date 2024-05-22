@@ -2,7 +2,10 @@
 using Budgeteer.Application.Common.Exceptions;
 using Budgeteer.Application.Common.Interfaces;
 using Budgeteer.Domain.Entities;
+using Budgeteer.Domain.Enums;
+using MediatR;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 
@@ -15,12 +18,23 @@ namespace Budgeteer.Application.Services
         private readonly IRepository<Product> _productRepository;
         private readonly IRepository<Cart> _cartRepository;
         private readonly IRepository<Category> _categoriesRepository;
+        private readonly ICurrentUserService _currentUserService;
+        private readonly IExpenseRepository _expenseRepository;
+        private readonly UserManager<User> _userManager;
 
-        public ReceiptService(IRepository<Product> productRepository, IRepository<Cart> cartRepository, IRepository<Category> categoriesRepository)
+        public ReceiptService(IRepository<Product> productRepository,
+            IRepository<Cart> cartRepository,
+            IRepository<Category> categoriesRepository,
+            ICurrentUserService currentUserService,
+            IExpenseRepository expenseRepository,
+            UserManager<User> userManager)
         {
             _productRepository = productRepository;
             _cartRepository = cartRepository;
             _categoriesRepository = categoriesRepository;
+            _currentUserService = currentUserService;
+            _expenseRepository = expenseRepository;
+            _userManager = userManager;
         }
 
         public async Task<List<CategorizedProductsDto>> ScanReceipt(List<Category> categories, IFormFile image)
@@ -79,6 +93,26 @@ namespace Budgeteer.Application.Services
             cart.CartProducts = cartProducts;
 
             await _cartRepository.PostAsync(cart);
+
+            //create an expense when saving cart
+
+            var totalSum = cartProducts.Sum(p => p.Price);
+            var expense = new Expense
+            {
+                Quantity = totalSum,
+                Category = ExpenseCategory.Shopping,
+                StoreId = null
+            };
+
+            var currentUserId = _currentUserService.UserId;
+            expense.UserId = Guid.Parse(currentUserId);
+
+            await _expenseRepository.Save(expense);
+
+            //decrease income sum for user
+            var user = await _userManager.FindByIdAsync(currentUserId);
+            user.Sum -= totalSum;
+            await _userManager.UpdateAsync(user);
 
             return cart;
         }

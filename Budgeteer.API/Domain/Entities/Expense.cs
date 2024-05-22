@@ -8,7 +8,7 @@ namespace Budgeteer.Domain.Entities
         public ExpenseCategory Category { get; set; }
         public Guid UserId { get; set; }
         public User User { get; set; }
-        public int StoreId { get; set; }
+        public int? StoreId { get; set; }
         public Store Store { get; set; }
     }
 }
