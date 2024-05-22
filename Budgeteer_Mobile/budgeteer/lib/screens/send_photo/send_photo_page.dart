@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:budgeteer/assets/core/custom_colors.dart';
+import 'package:budgeteer/components/my_button.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -19,19 +21,15 @@ class _SendPhotoPageState extends State<SendPhotoPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Gallery and Camera Access'),
-        backgroundColor: Colors.green,
+        backgroundColor: CustomColors.theme,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(Colors.green)),
-              child: const Text('Select photo from Gallery or Camera'),
-              onPressed: () {
-                _showPicker(context);
-              },
+            MyButton(
+              onTap: () => _showPicker(context),
+              text: "Select photo from Gallery or Camera",
             ),
             const SizedBox(
               height: 20,
@@ -46,13 +44,9 @@ class _SendPhotoPageState extends State<SendPhotoPage> {
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 18.0),
             ),
-            ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(Colors.white70)),
-              child: const Text('Send photo'),
-              onPressed: () {
-                // TODO: Send photo
-              },
+            MyButton(
+              onTap: () => _showPicker(context),
+              text: "Send photo",
             ),
           ],
         ),
