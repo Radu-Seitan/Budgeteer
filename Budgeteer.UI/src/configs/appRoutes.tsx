@@ -21,7 +21,14 @@ export const AppRoutes: FC = () => {
                         </AuthRoute>
                     }
                 />
-                <Route path={'/categories'} element={<Categories />} />
+                <Route
+                    path={'/categories'}
+                    element={
+                        <AuthRoute>
+                            <Categories />
+                        </AuthRoute>
+                    }
+                />
             </Route>
         </Routes>
     );
