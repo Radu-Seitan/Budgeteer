@@ -20,7 +20,7 @@ class _SendPhotoPageState extends State<SendPhotoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Gallery and Camera Access'),
+        title: const Text('Upload photo'),
         backgroundColor: CustomColors.theme,
       ),
       body: Center(

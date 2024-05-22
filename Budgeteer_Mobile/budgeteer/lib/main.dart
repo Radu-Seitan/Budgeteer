@@ -1,3 +1,4 @@
+import 'package:budgeteer/screens/home/home_page.dart';
 import 'package:budgeteer/screens/income/income_page.dart';
 import 'package:budgeteer/screens/login/login_page.dart';
 import 'package:budgeteer/screens/register/register_page.dart';
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginPage(),
         '/register': (context) => RegisterPage(),
         '/send_photo': (context) => const SendPhotoPage(),
-        '/income': (context) => const IncomePage()
+        '/income': (context) => const IncomePage(),
+        '/home': (context) => const HomePage()
       },
     );
   }

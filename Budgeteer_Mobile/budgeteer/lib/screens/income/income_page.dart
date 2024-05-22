@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:budgeteer/components/my_button.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:budgeteer/auth/auth_service.dart';
@@ -12,6 +13,7 @@ class IncomePage extends StatefulWidget {
 
 class _IncomePageState extends State<IncomePage> {
   final TextEditingController incomeController = TextEditingController();
+  final String _title = 'Budgeteer';
 
   List<String> categories = [
     'Salary',
@@ -91,6 +93,9 @@ class _IncomePageState extends State<IncomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(_title),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -103,6 +108,9 @@ class _IncomePageState extends State<IncomePage> {
               ),
             ),
           ),
+
+          const SizedBox(height: 10),
+
           DropdownButton<String>(
             hint: const Text('Category'),
             value: dropdownValue,
@@ -119,18 +127,18 @@ class _IncomePageState extends State<IncomePage> {
               });
             },
           ),
-          ElevatedButton(
-            child: const Text(
-              'Add income',
-              style: TextStyle(fontSize: 16),
-            ),
-            onPressed: () async {
+
+          const SizedBox(height: 25),
+
+          MyButton(
+            text:'Add income',
+            onTap: () async {
               await postIncome(
                 double.parse(incomeController.text),
               );
               Navigator.pop(context);
             },
-          ),
+          )
         ],
       ),
     );

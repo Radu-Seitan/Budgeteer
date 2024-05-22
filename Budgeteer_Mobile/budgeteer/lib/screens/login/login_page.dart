@@ -1,3 +1,4 @@
+import 'package:budgeteer/screens/home/home_page.dart';
 import 'package:budgeteer/screens/income/income_page.dart';
 import 'package:budgeteer/screens/register/register_page.dart';
 import 'package:budgeteer/screens/send_photo/send_photo_page.dart';
@@ -40,7 +41,7 @@ class LoginPage extends StatelessWidget {
         AuthService().setToken(token); // Store the token using the singleton
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const IncomePage()),
+          MaterialPageRoute(builder: (context) => const HomePage()),
         );
       } else {
         // Handle login failure
