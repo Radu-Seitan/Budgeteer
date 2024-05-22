@@ -1,5 +1,5 @@
 {
-    "name": "boilerplate-reactrnd-nro",
+    "name": "budgeteer",
     "packageManager": "yarn@3.2.0",
     "scripts": {
         "start:dev": "env-cmd -f ./src/configs/.env.dev yarn run webpack-dev-server --mode=development --open --hot",
@@ -14,6 +14,7 @@
         "@reduxjs/toolkit": "^1.6.1",
         "axios": "^0.26.0",
         "connected-react-router": "^6.9.1",
+        "copy-webpack-plugin": "^12.0.2",
         "date-fns": "^2.28.0",
         "formik": "^2.2.9",
         "history": "^5.0.1",
@@ -62,7 +63,5 @@
     },
     "version": "1.0.0",
     "main": "src/index.tsx",
-    "repository": "git@nro-gitlab:netrom/boilerplates/react.git",
-    "author": "Alex <alext@netrom.ro>",
     "license": "MIT"
 }

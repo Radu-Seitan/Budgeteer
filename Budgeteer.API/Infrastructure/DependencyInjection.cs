@@ -1,4 +1,5 @@
 ﻿using Budgeteer.Application.Common.Interfaces;
+using Budgeteer.Domain.Entities;
 using Budgeteer.Infrastructure.Persistence;
 using Budgeteer.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,9 @@ namespace Budgeteer.Infrastructure
             services.AddScoped<IIncomeRepository, IncomeRepository>();
             services.AddScoped<IStoreRepository, StoreRepository>();
             services.AddScoped<IAppImageRepository, AppImageRepository>();
+            services.AddTransient<IRepository<Category>, CategoryRepository>();
+            services.AddTransient<IRepository<Product>, ProductRepository>();
+            services.AddTransient<IRepository<Cart>, BaseRepository<Cart>>();
 
             return services;
         }

@@ -1,15 +1,28 @@
 ﻿using Budgeteer.Domain.Entities;
+using Budgeteer.Infrastructure.Configurations;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace Budgeteer.Infrastructure.Persistence
 {
     public class AppDbContext : IdentityDbContext<User, Role, Guid>
     {
         public DbSet<Income> Incomes { get; set; }
+
         public DbSet<Expense> Expenses { get; set; }
+
         public DbSet<Store> Stores { get; set; }
+
         public DbSet<AppImage> Images { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Product> Products { get; set; }
+
+        public DbSet<Cart> Carts { get; set; }
+
+        public DbSet<CartProduct> CartProducts { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) :
             base(options) { }
@@ -17,6 +30,11 @@ namespace Budgeteer.Infrastructure.Persistence
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            new CategoryConfiguration().Configure(builder.Entity<Category>());
+            new ProductConfiguration().Configure(builder.Entity<Product>());
+            new CartConfiguration().Configure(builder.Entity<Cart>());
+            new CartProductConfiguration().Configure(builder.Entity<CartProduct>());
 
             builder.Entity<Store>(store =>
             {

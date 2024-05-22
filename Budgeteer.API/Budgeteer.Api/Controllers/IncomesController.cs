@@ -9,6 +9,7 @@ namespace Budgeteer.Api.Controllers
 {
     [ApiController]
     [Route("api/incomes")]
+    [Authorize]
     public class IncomesController(IMediator mediator) : ControllerBase
     {
         [HttpGet]
