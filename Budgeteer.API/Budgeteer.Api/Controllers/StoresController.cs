@@ -40,11 +40,12 @@ namespace Budgeteer.Api.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateStore(
-            [FromBody] string name)
+            [FromBody] CreateStoreDto storeDto)
         {
             var command = new CreateStoreCommand
             {
-                Name = name
+                Name = storeDto.Name,
+                ImageId = storeDto.ImageId,
             };
 
             await mediator.Send(command);

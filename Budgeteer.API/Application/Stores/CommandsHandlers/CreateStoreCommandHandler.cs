@@ -7,6 +7,8 @@ namespace Budgeteer.Application.Stores.CommandsHandlers
     public class CreateStoreCommand : IRequest<Unit>
     {
         public string Name { get; set; }
+
+        public Guid? ImageId { get; set; }
     }
 
     public class CreateStoreCommandHandler(
@@ -17,6 +19,7 @@ namespace Budgeteer.Application.Stores.CommandsHandlers
             var store = new Store
             {
                 Name = request.Name,
+                ImageId = request.ImageId,
                 Expenses = []
             };
 

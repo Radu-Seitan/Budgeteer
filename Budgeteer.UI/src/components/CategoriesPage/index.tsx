@@ -5,9 +5,9 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import { Category } from '../shared/types/Category';
 import { CategoriesApiClient } from '../../api/Clients/CategoriesApiClients';
 import { CategoryModel } from '../../api/Models/CategoryModel';
+import { AddCategoryPopup } from './AddCategoryPopup';
 
 import './CategoriesPage.scss';
-import { AddCategoryPopup } from './AddCategoryPopup';
 
 export const CategoriesPage: FC = () => {
     const [categories, setCategories] = useState<Category[]>([]);

@@ -1,0 +1,56 @@
+.image-uploader-selected-image {
+    max-width: 10rem;
+    max-height: 5rem;
+}
+
+.image-uploader-selected-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.image-uploader-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 5rem;
+}
+
+.image-uploader-container {
+    padding: 1rem;
+    min-height: 8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.image-uploader-button {
+    font-size: 20px !important;
+}
+
+.image-uploader-button-container {
+    display: flex;
+    align-items: center;
+}
+
+.image-uploader-input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.image-uploader-headings {
+    color: #dcda64cf;
+    font-size: 22px !important;
+    font-weight: 600 !important;
+}
+
+.add-store-modal-content {
+    padding: 1rem !important;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
