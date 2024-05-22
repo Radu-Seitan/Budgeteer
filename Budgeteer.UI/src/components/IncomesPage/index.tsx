@@ -10,7 +10,7 @@ import './IncomesPage.scss';
 export const IncomesPage: FC = () => {
     const [income, setIncome] = useState<Income[]>([]);
 
-    const fetchProducts = async () => {
+    const fetchIncomes = async () => {
         try {
             const res = await IncomeApiClient.getAllAsync();
 
@@ -22,7 +22,7 @@ export const IncomesPage: FC = () => {
     };
 
     useEffect(() => {
-        fetchProducts();
+        fetchIncomes();
     }, []);
 
     return (

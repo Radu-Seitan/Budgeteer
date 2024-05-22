@@ -11,7 +11,9 @@ export const ProductsPage: FC = () => {
         try {
             const res = await ProductsApiClient.getAllAsync();
 
-            const products = res.map((e: ProductModel) => ({ ...e } as Product));
+            const products = res.map(
+                (e: ProductModel) => ({ ...e } as Product)
+            );
             setProducts(products);
         } catch (error: any) {
             console.log(error);
@@ -21,28 +23,27 @@ export const ProductsPage: FC = () => {
     useEffect(() => {
         fetchProducts();
     }, []);
-    
-    return <Grid 
-    container spacing={2} 
-    direction="row"
-    justifyContent="flex-start"
-    alignItems="flex-start"
-    style={{ marginTop: '16px' }}>
-        {products.map((product: Product, index: number) => (
-        <Grid item xs={3} key={`${product.id}-${index}`}>
-            <Card
-                className={'product'}
-            >
-                <CardContent>
-                    <Typography variant="h5" component="div">
-                        {product.name}
-                    </Typography>
-                    <Typography variant="h6">
-                        Type: {product.categories.join(", ")}
-                    </Typography>
-                </CardContent>
-            </Card>
+
+    return (
+        <Grid container spacing={2} className={'expenses-container'}>
+            {products.map((product: Product, index: number) => (
+                <Grid item xs={3} key={`${product.id}-${index}`}>
+                    <Card className={'expense'}>
+                        <CardContent>
+                            <Typography
+                                variant="h6"
+                                component="div"
+                                className={'expense-category'}
+                            >
+                                {product.name}
+                            </Typography>
+                            <Typography variant="h6" component="div">
+                                Category: {product.categories.join(', ')}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </Grid>
+            ))}
         </Grid>
-        ))}
-    </Grid>;
+    );
 };

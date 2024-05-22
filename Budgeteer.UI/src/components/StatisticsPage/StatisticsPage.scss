@@ -5,3 +5,18 @@
     gap: 1rem;
     padding: 1rem;
 }
+
+.statistics-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1rem;
+    padding: 5rem;
+}
+
+.statistics-graph-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
