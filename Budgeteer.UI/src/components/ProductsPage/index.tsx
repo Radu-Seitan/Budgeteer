@@ -29,9 +29,8 @@ export const ProductsPage: FC = () => {
     alignItems="flex-start"
     style={{ marginTop: '16px' }}>
         {products.map((product: Product, index: number) => (
-        <Grid item xs={3}>
+        <Grid item xs={3} key={`${product.id}-${index}`}>
             <Card
-                key={`${product.id}-${index}`}
                 className={'product'}
             >
                 <CardContent>
