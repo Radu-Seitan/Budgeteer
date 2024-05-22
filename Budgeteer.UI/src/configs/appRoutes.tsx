@@ -5,11 +5,13 @@ import App from '../App';
 import { Login } from '../components/Login';
 import { Home } from '../components/Home';
 import { Categories } from '../components/Categories';
+import { Register } from '../components/Register';
 
 export const AppRoutes: FC = () => {
     return (
         <Routes>
             <Route path={'/'} element={<App />}>
+                <Route path={'/register'} element={<Register />} />
                 <Route path={'/login'} element={<Login />} />
                 <Route
                     path={'/'}

@@ -1,0 +1,24 @@
+.register-form {
+    width: 20rem;
+    padding: 2rem;
+    margin: 4rem auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 8px 0px,
+        rgba(0, 0, 0, 0.3) 0px 6px 20px 0px;
+}
+
+.register-button {
+    width: 100% !important;
+    margin-top: 20px !important;
+    height: 40px !important;
+    color: #fff !important;
+}
+
+.login-logo-image {
+    max-width: 18rem;
+    align-self: center;
+}
