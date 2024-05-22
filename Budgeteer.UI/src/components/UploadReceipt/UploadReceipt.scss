@@ -1,0 +1,18 @@
+.upload-receipt-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.upload-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;
+}
+
+.upload-selected-image {
+    max-width: 30rem;
+}
