@@ -5,9 +5,9 @@ export type MenuEntry = {
 };
 
 export const settingsItems: MenuEntry[] = [
-    {
-        key: 'settings',
-        title: 'Settings',
-        route: '/settings',
-    },
+    // {
+    //     key: 'settings',
+    //     title: 'Settings',
+    //     route: '/settings',
+    // },
 ];

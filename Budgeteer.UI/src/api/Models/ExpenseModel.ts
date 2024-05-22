@@ -1,7 +1,7 @@
 export type ExpenseModel = {
-    id: number,
-    quantity: number,
-    category: string,
-    created: Date,
-    userId: string
-}
+    id: number;
+    quantity: number;
+    category: string;
+    createdAt: Date;
+    userId: string;
+};

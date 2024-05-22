@@ -1,7 +1,7 @@
 export type IncomeModel = {
     id?: number;
-    created: Date;
+    createdAt: Date;
     quantity: number;
     category: string;
     userId: string;
-}
+};
