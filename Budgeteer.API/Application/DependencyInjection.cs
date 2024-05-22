@@ -3,6 +3,8 @@ using MediatR.Pipeline;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Budgeteer.Application.Common.Interfaces;
+using Budgeteer.Application.Services;
 
 namespace Budgeteer.Application
 {
@@ -21,6 +23,10 @@ namespace Budgeteer.Application
             services.AddTransient(typeof(IRequestPreProcessor<>), typeof(LoggingBehaviour<>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IReceiptService, ReceiptService>();
+
 
             return services;
         }

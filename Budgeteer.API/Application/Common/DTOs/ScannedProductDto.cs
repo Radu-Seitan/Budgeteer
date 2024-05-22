@@ -1,16 +1,16 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace Budgeteer.Application.Common.DTOs
 {
     public class ScannedProductDto
     {
-        [JsonPropertyName("nume produs")]
+        [JsonProperty("nume produs")]
         public string Name { get; set; }
 
-        [JsonPropertyName("cantitate")]
+        [JsonProperty("cantitate")]
         public int Quantity { get; set; }
 
-        [JsonPropertyName("pret")]
+        [JsonProperty("pret")]
         public double Price { get; set; }
     }
 }

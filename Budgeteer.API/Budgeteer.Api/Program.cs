@@ -4,6 +4,7 @@ using Budgeteer.Api.Settings;
 using Budgeteer.Application;
 using Budgeteer.Application.Common.Interfaces;
 using Budgeteer.Infrastructure;
+using Microsoft.Extensions.Options;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -42,6 +43,7 @@ builder.Services.AddControllers()
     {
         var enumConverter = new JsonStringEnumConverter();
         opts.JsonSerializerOptions.Converters.Add(enumConverter);
+        opts.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
