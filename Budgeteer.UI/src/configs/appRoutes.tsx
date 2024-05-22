@@ -4,6 +4,7 @@ import { AuthRoute } from '../auth/AuthRoute';
 import App from '../App';
 import { Login } from '../components/Login';
 import { Home } from '../components/Home';
+import { Categories } from '../components/Categories';
 import { Register } from '../components/Register';
 
 export const AppRoutes: FC = () => {
@@ -20,6 +21,7 @@ export const AppRoutes: FC = () => {
                         </AuthRoute>
                     }
                 />
+                <Route path={'/categories'} element={<Categories />} />
             </Route>
         </Routes>
     );
