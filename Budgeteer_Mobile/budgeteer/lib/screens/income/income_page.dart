@@ -136,7 +136,7 @@ class _IncomePageState extends State<IncomePage> {
               await postIncome(
                 double.parse(incomeController.text),
               );
-              Navigator.pop(context);
+              Navigator.pushNamed(context, '/display_income');
             },
           )
         ],

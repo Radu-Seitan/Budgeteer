@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
           MyButton(
             text: 'Expense',
             onTap: () {
-              Navigator.pushNamed(context, '/expense');
+              Navigator.pushNamed(context, '/display_expense');
             },
           ),
           MyButton(
