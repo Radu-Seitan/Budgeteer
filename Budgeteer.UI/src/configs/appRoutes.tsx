@@ -4,8 +4,13 @@ import { AuthRoute } from '../auth/AuthRoute';
 import App from '../App';
 import { Login } from '../components/Login';
 import { Home } from '../components/Home';
-import { Categories } from '../components/Categories';
+import { CategoriesPage } from '../components/CategoriesPage';
 import { Register } from '../components/Register';
+import { UploadReceipt } from '../components/UploadReceipt';
+import { Statistics } from '../components/StatisticsPage';
+import { StoresPage } from '../components/StoresPage';
+import { IncomesPage } from '../components/IncomesPage';
+import { ExpensesPage } from '../components/ExpensesPage';
 
 export const AppRoutes: FC = () => {
     return (
@@ -25,7 +30,47 @@ export const AppRoutes: FC = () => {
                     path={'/categories'}
                     element={
                         <AuthRoute>
-                            <Categories />
+                            <CategoriesPage />
+                        </AuthRoute>
+                    }
+                />
+                <Route
+                    path={'/upload-receipt'}
+                    element={
+                        <AuthRoute>
+                            <UploadReceipt />
+                        </AuthRoute>
+                    }
+                />
+                <Route
+                    path={'/statistics'}
+                    element={
+                        <AuthRoute>
+                            <Statistics />
+                        </AuthRoute>
+                    }
+                />
+                <Route
+                    path={'/stores'}
+                    element={
+                        <AuthRoute>
+                            <StoresPage />
+                        </AuthRoute>
+                    }
+                />
+                <Route
+                    path={'/incomes'}
+                    element={
+                        <AuthRoute>
+                            <IncomesPage />
+                        </AuthRoute>
+                    }
+                />
+                <Route
+                    path={'/expenses'}
+                    element={
+                        <AuthRoute>
+                            <ExpensesPage />
                         </AuthRoute>
                     }
                 />

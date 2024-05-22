@@ -14,8 +14,7 @@ import './Home.scss';
 
 import * as images from '../shared/resources/images';
 
-const { StatisticsLogo, ReceiptImage, CategoriesImage, LogoImage } =
-    images.default;
+const { StatisticsLogo, ReceiptImage, IncomesLogo, LogoImage } = images.default;
 
 export const Home: FC = () => {
     return (
@@ -32,7 +31,7 @@ export const Home: FC = () => {
                 <Grid item sm={6} md={4}>
                     <Card className={'card'}>
                         <img
-                            src={CategoriesImage}
+                            src={IncomesLogo}
                             alt="Categories"
                             className={'card-image'}
                         />
@@ -44,13 +43,13 @@ export const Home: FC = () => {
                                 textAlign={'center'}
                                 className={'section-title'}
                             >
-                                Categories
+                                Incomes
                             </Typography>
                         </CardContent>
                         <CardActions>
                             <Button
                                 component={Link}
-                                to="/categories"
+                                to="/incomes"
                                 variant="contained"
                                 className={'card-button'}
                             >
@@ -74,13 +73,13 @@ export const Home: FC = () => {
                                 textAlign={'center'}
                                 className={'section-title'}
                             >
-                                Receipts
+                                Expenses
                             </Typography>
                         </CardContent>
                         <CardActions>
                             <Button
                                 component={Link}
-                                to="/upload-receipt"
+                                to="/expenses"
                                 variant="contained"
                                 className={'card-button'}
                             >

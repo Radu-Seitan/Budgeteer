@@ -11,7 +11,7 @@ namespace Budgeteer.Domain.Entities
         public Guid Id { get; set; }
         public byte[] Content { get; set; }
         public string Type { get; set; }
-        public int StoreId { get; set; }
+        public int? StoreId { get; set; }
         public List<Store> Stores { get; set; }
     }
 }

@@ -1,19 +1,21 @@
-﻿using MediatR;
+﻿using Budgeteer.Application.Common.Interfaces;
+using MediatR;
 
 namespace Budgeteer.Application.AppImages.CommandsHandlers
 {
-    public class UploadExpenseImageCommand : IRequest<Unit>
+    public class UploadExpenseImageCommand : IRequest<Guid>
     {
         public byte[] Content { get; set; }
         public string Type { get; set; }
     }
 
-    public class UploadExpenseImageCommandHandler : IRequestHandler<UploadExpenseImageCommand, Unit>
+    public class UploadExpenseImageCommandHandler(IAppImageRepository appImageRepository) : IRequestHandler<UploadExpenseImageCommand, Guid>
     {
-        public Task<Unit> Handle(UploadExpenseImageCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(UploadExpenseImageCommand request, CancellationToken cancellationToken)
         {
-            //TODO add logic to send photo to python project 
-            throw new NotImplementedException();
+            var image = await appImageRepository.UploadImage(request.Content, request.Type);
+
+            return image.Id;
         }
     }
 }

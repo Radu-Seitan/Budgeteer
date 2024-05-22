@@ -32,5 +32,18 @@ namespace Budgeteer.Infrastructure.Repositories
             var image = await context.Images.FindAsync(imageId);
             return image;
         }
+
+        public async Task<AppImage> UploadImage(byte[] content, string type)
+        {
+            var appImage = new AppImage
+            {
+                Content = content,
+                Type = type,
+            };
+
+            context.Images.Add(appImage);
+            await context.SaveChangesAsync();
+            return appImage;
+        }
     }
 }

@@ -33,10 +33,37 @@ export const AppHeader: FC = () => {
                             <Button
                                 variant="contained"
                                 component={Link}
+                                to="/stores"
+                            >
+                                <Typography className={'menu-button-text'}>
+                                    Stores
+                                </Typography>
+                            </Button>
+                            <Button
+                                variant="contained"
+                                component={Link}
                                 to="/upload-receipt"
                             >
                                 <Typography className={'menu-button-text'}>
                                     Upload receipt
+                                </Typography>
+                            </Button>
+                            <Button
+                                variant="contained"
+                                component={Link}
+                                to="/incomes"
+                            >
+                                <Typography className={'menu-button-text'}>
+                                    Incomes
+                                </Typography>
+                            </Button>
+                            <Button
+                                variant="contained"
+                                component={Link}
+                                to="/expenses"
+                            >
+                                <Typography className={'menu-button-text'}>
+                                    Expenses
                                 </Typography>
                             </Button>
                             <Button
