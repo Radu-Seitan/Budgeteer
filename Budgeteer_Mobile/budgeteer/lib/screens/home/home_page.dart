@@ -1,6 +1,6 @@
 import 'package:budgeteer/components/my_button.dart';
 import 'package:flutter/material.dart';
-import 'package:budgeteer/auth/auth_service.dart';
+import 'package:budgeteer/services/auth/auth_service.dart';
 
 class HomePage extends StatelessWidget {
   final String _title = 'Budgeteer';
@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
           MyButton(
             text: 'Income',
             onTap: () {
-              Navigator.pushNamed(context, '/income');
+              Navigator.pushNamed(context, '/display_income');
             },
           ),
           MyButton(

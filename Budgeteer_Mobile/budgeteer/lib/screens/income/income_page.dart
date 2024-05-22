@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:budgeteer/components/my_button.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:budgeteer/auth/auth_service.dart';
+import 'package:budgeteer/services/auth/auth_service.dart';
 
 class IncomePage extends StatefulWidget {
   const IncomePage({super.key});
@@ -13,7 +13,7 @@ class IncomePage extends StatefulWidget {
 
 class _IncomePageState extends State<IncomePage> {
   final TextEditingController incomeController = TextEditingController();
-  final String _title = 'Budgeteer';
+  final String _title = 'Add Income';
 
   List<String> categories = [
     'Salary',

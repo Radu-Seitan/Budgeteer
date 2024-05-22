@@ -5,7 +5,7 @@ import 'package:budgeteer/components/my_button.dart';
 import 'package:budgeteer/components/my_textfield.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';  // For json encoding and decoding
-import 'package:budgeteer/auth/auth_service.dart'; // Import the AuthService singleton
+import 'package:budgeteer/services/auth/auth_service.dart'; // Import the AuthService singleton
 
 
 class RegisterPage extends StatelessWidget {

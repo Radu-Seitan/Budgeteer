@@ -1,13 +1,11 @@
 import 'package:budgeteer/screens/home/home_page.dart';
-import 'package:budgeteer/screens/income/income_page.dart';
 import 'package:budgeteer/screens/register/register_page.dart';
-import 'package:budgeteer/screens/send_photo/send_photo_page.dart';
 import 'package:flutter/material.dart';
 import 'package:budgeteer/components/my_button.dart';
 import 'package:budgeteer/components/my_textfield.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';  // For json encoding and decoding
-import 'package:budgeteer/auth/auth_service.dart'; // Import the AuthService singleton
+import 'package:budgeteer/services/auth/auth_service.dart'; // Import the AuthService singleton
 
 
 class LoginPage extends StatelessWidget {
