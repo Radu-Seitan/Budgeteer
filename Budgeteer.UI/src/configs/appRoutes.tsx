@@ -11,6 +11,7 @@ import { Statistics } from '../components/StatisticsPage';
 import { StoresPage } from '../components/StoresPage';
 import { IncomesPage } from '../components/IncomesPage';
 import { ExpensesPage } from '../components/ExpensesPage';
+import { ProductsPage } from '../components/ProductsPage';
 
 export const AppRoutes: FC = () => {
     return (
@@ -71,6 +72,14 @@ export const AppRoutes: FC = () => {
                     element={
                         <AuthRoute>
                             <ExpensesPage />
+                        </AuthRoute>
+                    }
+                />
+                <Route
+                    path={'/products'}
+                    element={
+                        <AuthRoute>
+                            <ProductsPage />
                         </AuthRoute>
                     }
                 />

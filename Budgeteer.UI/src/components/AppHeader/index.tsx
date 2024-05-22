@@ -42,6 +42,15 @@ export const AppHeader: FC = () => {
                             <Button
                                 variant="contained"
                                 component={Link}
+                                to="/products"
+                            >
+                                <Typography className={'menu-button-text'}>
+                                    Products
+                                </Typography>
+                            </Button>
+                            <Button
+                                variant="contained"
+                                component={Link}
                                 to="/upload-receipt"
                             >
                                 <Typography className={'menu-button-text'}>

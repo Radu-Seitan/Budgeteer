@@ -12,13 +12,9 @@ import {
     Typography,
 } from '@mui/material';
 import { AddStorePopup } from './AddStorePopup';
-
-import './StoresPage.scss';
-
-import * as images from '../shared/resources/images';
 import { StoreImage } from '../StoreImage';
 
-const { StatisticsLogo, ReceiptImage, IncomesLogo, LogoImage } = images.default;
+import './StoresPage.scss';
 
 export const StoresPage: FC = () => {
     const [stores, setStores] = useState<Store[]>([]);
@@ -70,16 +66,14 @@ export const StoresPage: FC = () => {
                                 imageId={store.imageId}
                                 imageClassName={'card-image'}
                             />
-                            <CardContent>
-                                <Typography
-                                    gutterBottom
-                                    variant="h5"
+                            <CardContent sx={{ margin: 'auto' }}>
+                                <Box
                                     component="div"
                                     textAlign={'center'}
                                     className={'stores-text-container'}
                                 >
                                     {store.name}
-                                </Typography>
+                                </Box>
                             </CardContent>
                         </Card>
                     ))}
