@@ -1,16 +1,18 @@
 import { Box, Button, Divider, Typography } from '@mui/material';
 import { ChangeEvent, FC, useEffect, useState } from 'react';
-
-import './UploadReceipt.scss';
 import { Category } from '../shared/types/Category';
 import { CategoriesApiClient } from '../../api/Clients/CategoriesApiClients';
 import { CategoryModel } from '../../api/Models/CategoryModel';
 import { ReceiptsApiClient } from '../../api/Clients/ReceiptsApiClient';
+import { useNavigate } from 'react-router';
+
+import './UploadReceipt.scss';
 
 export const UploadReceipt: FC = () => {
     const [categories, setCategories] = useState<Category[]>([]);
     const [inputValue, setInputValue] = useState<string>('');
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
+    const navigate = useNavigate();
 
     const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.files) {
@@ -35,16 +37,16 @@ export const UploadReceipt: FC = () => {
     const uploadReceipt = async () => {
         if (!selectedImage) return;
 
-        const formData = new FormData();
-        formData.append('file', selectedImage);
-
         const categoriesString = JSON.stringify(categories);
-        console.log(formData);
+
+        const formData = new FormData();
+        formData.append('image', selectedImage);
+        formData.append('categories', categoriesString);
+
         try {
-            const res = await ReceiptsApiClient.scanAndSaveProducts(
-                formData,
-                categoriesString
-            );
+            const res = await ReceiptsApiClient.scanAndSaveProducts(formData);
+
+            navigate('/');
         } catch (error: any) {
             console.log(error);
         }
