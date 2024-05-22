@@ -9,6 +9,8 @@ namespace Budgeteer.Application.Common.Profiles
         public IncomeProfile()
         {
             CreateMap<CreateIncomeDto, Income>();
+
+            CreateMap<Income, IncomeDto>();
         }
     }
 }
