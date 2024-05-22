@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:budgeteer/screens/login/login_page.dart';
 import 'package:budgeteer/screens/register/register_page.dart';
+import 'package:budgeteer/screens/send_photo/send_photo_page.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Budgeteer',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -30,14 +31,15 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const LoginPage(),
-        '/login': (context) => const LoginPage(),
-        '/register': (context) => const RegisterPage(),
+        '/': (context) => LoginPage(),
+        '/login': (context) => LoginPage(),
+        '/register': (context) => RegisterPage(),
+        '/send_photo': (context) => const SendPhotoPage(),
       },
     );
   }
