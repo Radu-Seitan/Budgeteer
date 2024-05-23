@@ -23,22 +23,22 @@ services:
     depends_on:
       - sqlserver
 
-  budgeteer-frontend:
-    image: budgeteer-frontend
-    build:
-      context: ./Budgeteer.UI
-      dockerfile: ./Dockerfile
-    container_name: budgeteer-frontend
-    restart: on-failure
-    ports:
-      - 3000:3000
-    networks:
-      - budgeteer-network
-    depends_on:
-      - budgeteer-api
-    volumes:
-      - ./Budgeteer.UI:/app
-      - node_modules:/app/node_modules
+  # budgeteer-frontend:
+  #   image: budgeteer-frontend
+  #   build:
+  #     context: ./Budgeteer.UI
+  #     dockerfile: ./Dockerfile
+  #   container_name: budgeteer-frontend
+  #   restart: on-failure
+  #   ports:
+  #     - 3000:3000
+  #   networks:
+  #     - budgeteer-network
+  #   depends_on:
+  #     - budgeteer-api
+  #   volumes:
+  #     - ./Budgeteer.UI:/app
+  #     - node_modules:/app/node_modules
 
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest # if working on Windows
