@@ -6,7 +6,7 @@ class IncomeService {
   static Future<List<dynamic>> fetchIncome() async {
     final String? token = AuthService().token;
     final response = await http.get(
-      Uri.parse('http://34.118.82.150:5030/api/incomes'),
+      Uri.parse('http://10.0.2.2:5030/api/incomes'),
       headers: {
         'Authorization': 'Bearer $token',
       },

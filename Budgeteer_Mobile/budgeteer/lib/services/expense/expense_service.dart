@@ -6,7 +6,7 @@ class ExpenseService {
   static Future<List<dynamic>> fetchExpense() async {
     final String? token = AuthService().token;
     final response = await http.get(
-      Uri.parse('http://34.118.82.150:5030/api/expenses'),
+      Uri.parse('http://10.0.2.2:5030/api/expenses'),
       headers: {
         'Authorization': 'Bearer $token',
       },

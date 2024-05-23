@@ -6,7 +6,7 @@ class CategoryService {
   static Future<List<dynamic>> fetchCategory() async {
     final String? token = AuthService().token;
     final response = await http.get(
-      Uri.parse('http://34.118.82.150:5030/api/categories'),
+      Uri.parse('http://10.0.2.2:5030/api/categories'),
       headers: {
         'Authorization': 'Bearer $token',
       },
